@@ -1,0 +1,409 @@
+{% extends 'base.html' %}
+{% block title %}
+Crear un paciente
+{% endblock %}
+{% block content %}
+    <form action="" id="form1"class="form-horizontal"  method="post">
+            {% csrf_token %}
+                <div class="pull-right">
+                    <a href="{% url 'consultaListar' %}" style="border: 0;margin-left:0px ;padding-left: 0px;padding-right: 20px"><i style="color: #72afd2" class='glyphicon glyphicon-edit'></i> <span style="color: #72afd2;margin-left: 5px">Consultas</span></a>
+                    <a href="{% url 'tratamientoListar' paciente.cedula %}" style="border: 0;margin-left:0px ;padding-left: 0px;padding-right: 20px"><i style="color: #72afd2" class='glyphicon glyphicon-edit'></i> <span style="color: #72afd2;margin-left: 5px">Tratamiento</span></a>
+                    <a href="{% url 'PaginaInicio' %}" style="border: 0;margin-left:0px ;padding-left: 0px;padding-right: 20px"><i style="color: #72afd2" class='glyphicon glyphicon-edit'></i> <span style="color: #72afd2;margin-left: 5px">Cancelar</span></a>
+                    <i class='glyphicon glyphicon-edit' style="color: #72afd2">
+                         <input type="submit"  name="editar"  id="editar"  style="border: 0;margin-left:-10px ;padding-left: 0px;padding-right: 20px; background-color: transparent;color: #72afd2" class="" value="Editar" onclick="editarFormulario()"/>
+                    </i>
+                    <i class='glyphicon glyphicon-edit' style="color: #72afd2">
+                         <input type="submit"  name="guardar"  id="guardar"  style="border: 0;margin-left:-10px ;padding-left: 0px;padding-right: 20px; background-color: transparent;color: #72afd2" class="" disabled value="Guardar" onclick="guardarFormulario()"/>
+                    </i>
+
+                </div>
+        <br/>
+        <br/>
+            <div class="box box-header with-border">
+            <h3 class="box-title">INFORMACIÓN PERSONAL</h3>
+            <div class="box-body">
+            <div class="form-group">
+                <label for="cedula"  class="control-label col-lg-2">Cédula</label>
+                <div class="col-sm-10" id="divcedula">
+                    <input type="text" id="cedula" disabled value="{{ paciente.cedula }}" title="Ingrese solo numeros" name="cedula" class="form-control" pattern="[1-9]*" placeholder="Ingrese su numero de cedula"/>
+                    </div>
+                </div>
+            <div class="form-group">
+                <label for="nombre"class="control-label col-sm-2">Nombre</label>
+                <div class="col-sm-10">
+                    <input type="text"  disabled name="nombre"  id="nombre" value="{{ paciente.nombre }}" title="Ingrese solo letras" pattern="[aA-zZ;' ']*" class="form-control" placeholder="Ingrese su nombre"/>
+                    </div>
+                </div>
+            <div class="form-group">
+                <label for="apellido"class="control-label col-sm-2">Apellido</label>
+                <div class="col-sm-10">
+                    <input class="form-control"disabled  name="apellido" id="apellido" value="{{ paciente.apellido }}" title="Ingrese solo letras" pattern="[aA-zZ;' ']*" type="text" placeholder="Ingrese su apellido"/>
+                    </div>
+                </div>
+            <div class="form-group">
+                <label for="direccion"class="control-label col-sm-2">Dirección</label>
+                <div class="col-sm-10">
+                    <input class="form-control" disabled type="text" id="direccion" value="{{ paciente.direccion }}" title="Ingrese solo letras" pattern="[aA-zZ;' ']*" name="direccion" placeholder="Ingrese su direccion"/>
+                    </div>
+                </div>
+            <div class="form-group">
+                <label for="ocupacion"class="control-label col-sm-2">Ocupación</label>
+                <div class="col-sm-10">
+                    <input class="form-control"disabled  type="text" id="ocupacion" value="{{ paciente.ocupacion }}" title="Ingrese solo letras" pattern="[aA-zZ;' ']*" name="ocupacion" placeholder="Ingrese su ocupacion"/>
+                    </div>
+                </div>
+            <div class="form-group">
+                  <label for="sexo"class="control-label col-sm-2">Sexo </label>
+                  <div class="radio col-sm-2" id="radio1">
+                    <label>
+                      <input type="radio" name="sexo" id="sexo1" disabled  value="M">
+                      Masculino
+                    </label>
+                  </div>
+                  <div class="radio col-sm-2">
+                    <label>
+                      <input type="radio" name="sexo" id="sexo2" disabled value="F">
+                      Femenino
+                    </label>
+                  </div>
+                </div>
+            <div class="form-group">
+                <label for="telefono"class="control-label col-sm-2">Teléfono</label>
+                <div class="col-sm-10">
+                    <input class="form-control" disabled type="text"id="telefono" value="{{ paciente.telefono }}" pattern="[0-9]*" title="Ingrese solo numeros" name="telefono" placeholder="Ingrese su numero de telefono"/>
+                    </div>
+                </div>
+            <div class="form-group">
+                <label for="fechaNacimiento"class="control-label col-sm-2">Fecha </label>
+                <div class="col-sm-10">
+                    <input class="form-control"disabled  type="date" id="fechaNacimiento" value="1996-12-19" name="fechaNacimiento" placeholder="Ingrese su fecha de Nacimiento"/>
+                </div>
+            </div>
+                 {% if paciente.sexo in "M" %}
+                      <script>
+                      var a=document.getElementById("sexo1");
+                      a.setAttribute("checked","true")
+                      </script>
+                  {% else %}
+                      <script>
+                      var a=document.getElementById("sexo2");
+                      a.setAttribute("checked","true")
+                      </script>
+                  {% endif %}
+
+        </div>
+            </div>
+            <div class="box box-header with-border">
+                <h3 class="box-title">ANTECEDENTES PATOLÓGICOS</h3>
+                 <div class="box-body">
+            <div class="form-group">
+                <label for="enfermedadesCardiacas"  class="control-label col-lg-2">Enfermedades Cardiacas</label>
+                <div class="col-sm-10">
+                    <input type="text" id="enfermedadesCardiacas" disabled title="Ingrese solo letras" pattern="[aA-zZ;'']*" value="{{ antecedentes.enfermedadesCardiacas }}" name="enfermedadesCardiacas" class="form-control" placeholder="Ingrese su numero de cedula"/>
+                    </div>
+                </div>
+               <div class="form-group">
+              <label for="presionArterial"class="control-label col-sm-2">Presion Arterial </label>
+              <div class="radio col-sm-2">
+                <label>
+                  <input type="radio" name="presionArterial" disabled id="presionArterial1" value="A">
+                  Alta
+                </label>
+              </div>
+              <div class="radio col-sm-2">
+                <label>
+                  <input type="radio" name="presionArterial" disabled id="presionArterial2" value="B">
+                  Baja
+                </label>
+              </div>
+              <div class="radio col-sm-2">
+                <label>
+                  <input type="radio" name="presionArterial" disabled id="presionArterial3" value="N">
+                  Normal
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+                <label for="transtornosSanguineos"class="control-label col-sm-2">Transtornos Sanguíneos</label>
+                <div class="col-sm-10">
+                    <input type="text" disabled name="transtornosSanguineos" id="transtornosSanguineos" title="Ingrese solo letras" pattern="[aA-zZ;' ']*" value="{{ antecedentes.transtornosSanguineos }}" class="form-control" placeholder="Ingrese transtornos Sanguineos"/>
+                    </div>
+                </div>
+            <div class="form-group">
+                <label for="alergias"class="control-label col-sm-2">Alergias</label>
+                <div class="col-sm-10">
+                    <input class="form-control" id="alergias" disabled title="Ingrese solo letras" pattern="[aA-zZ;' ']*" name="alergias" value="{{ antecedentes.alergias }}" type="text" placeholder="Ingrese alergias"/>
+                    </div>
+                </div>
+            <div class="form-group">
+                <label for="medicacion"class="control-label col-sm-2">Medicación</label>
+                <div class="col-sm-10">
+                    <input class="form-control" disabled type="text" title="Ingrse solo letras" pattern="[aA-zZ  ;'']*" name="medicacion" id="medicacion" value="{{ antecedentes.medicacion }}" placeholder="Ingrese medicacion"/>
+                    </div>
+                </div>
+             <div class="form-group">
+                <label for="otrasEnfermedades"class="control-label col-sm-2">Otras Enfermedades</label>
+                <div class="col-sm-10">
+                    <input class="form-control" disabled type="text" title="Ingrse solo letras" pattern="[aA-zZ  ;'']*" id="otrasEnfermedades"  name="otrasEnfermedades" value="{{ antecedentes.otrasEnfermedades }}"  placeholder="Ingrese otras enfermedades"/>
+                    </div>
+                </div>
+           {% if antecedentes.presionArterial == "A" %}
+                      <script>
+                      var a=document.getElementById("presionArterial1");
+                      a.setAttribute("checked","true")
+                      </script>
+          {% endif %}
+                 {% if antecedentes.presionArterial == "B" %}
+                      <script>
+                      var a=document.getElementById("presionArterial2");
+                      a.setAttribute("checked","true")
+                      </script>
+          {% endif %}
+         {% if antecedentes.presionArterial == "N" %}
+                      <script>
+                      var a=document.getElementById("presionArterial3");
+                      a.setAttribute("checked","true")
+                      </script>
+          {% endif %}
+        </div>
+    </div>
+
+            <div class="box box-header with-border">
+                <h3 class="box-title">SINTOMATOLOGÍA ORAL</h3>
+                 <div class="box-body">
+            <div class="form-group">
+              <label for="halitosis"   class="control-label col-sm-2">Halitosis </label>
+              <div class="radio col-sm-2" >
+                <label>
+                  <input type="radio" name="halitosis" disabled id="halitosis1" value="S">
+                  Si
+                </label>
+              </div>
+              <div class="radio col-sm-2">
+                <label>
+                  <input type="radio" name="halitosis" disabled id="halitosis2" value="N">
+                  No
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+
+              <label for="hipersensibilidad"class="control-label col-sm-2">Hipersensibilidad </label>
+              <div class="radio col-sm-2" >
+                <label>
+                  <input type="checkbox" name="hipersensibilidad"  disabled id="hipersensibilidad1" value="F">
+                  Frio
+                </label>
+              </div>
+              <div class="radio col-sm-2">
+                <label>
+                  <input type="checkbox" name="hipersensibilidad" disabled  id="hipersensibilidad2" value="C">
+                  Calor
+                </label>
+              </div>
+              <div class="radio col-sm-2">
+                <label>
+                  <input type="checkbox" name="hipersensibilidad" disabled id="hipersensibilidad3" value="D">
+                  Dulce
+                </label>
+              </div>
+              <div class="radio col-sm-2">
+                <label>
+                  <input type="checkbox" name="hipersensibilidad" disabled id="hipersensibilidad4" value="A">
+                  Ácido
+                </label>
+              </div>
+              <div class="radio col-sm-2">
+                <label>
+                  <input type="checkbox" name="hipersensibilidad" disabled id="hipersensibilidad5" value="T">
+                  Tacto
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="sangradoEncias"class="control-label col-sm-2">Sangrado de Encias </label>
+              <div class="radio col-sm-2" >
+                <label>
+                  <input type="radio" name="sangradoEncias" disabled id="sangradoEncias1" value="S">
+                  Si
+                </label>
+              </div>
+              <div class="radio col-sm-2">
+                <label>
+                  <input type="radio" name="sangradoEncias" disabled id="sangradoEncias2" value="N">
+                  No
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="xerostomia"class="control-label col-sm-2">Xerostomía </label>
+              <div class="radio col-sm-2" >
+                <label>
+                  <input type="radio" name="xerostomia" disabled id="xerostomia1" value="S">
+                  Si
+                </label>
+              </div>
+              <div class="radio col-sm-2">
+                <label>
+                  <input type="radio" name="xerostomia" disabled id="xerostomia2" value="N">
+                  No
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="bruxismo"class="control-label col-sm-2">Bruxismo </label>
+              <div class="radio col-sm-2" >
+                <label>
+                  <input type="radio" name="bruxismo" id="bruxismo1" disabled value="S">
+                  Si
+                </label>
+              </div>
+              <div class="radio col-sm-2">
+                <label>
+                  <input type="radio" name="bruxismo" id="bruxismo2" disabled value="N">
+                  No
+                </label>
+              </div>
+
+                {% if sintoma.hipersensibilidad == "F" %}
+                          <script>
+                          var a=document.getElementById("hipersensibilidad1");
+                          a.setAttribute("checked","true")
+                          </script>
+                {% endif %}
+                {% if sintoma.hipersensibilidad == "C" %}
+                          <script>
+                          var a=document.getElementById("hipersensibilidad2");
+                          a.setAttribute("checked","true")
+                          </script>
+                {% endif %}
+                {% if sintoma.hipersensibilidad == "D" %}
+                          <script>
+                          var a=document.getElementById("hipersensibilidad3");
+                          a.setAttribute("checked","true")
+                          </script>
+                {% endif %}
+                {% if sintoma.hipersensibilidad == "A" %}
+                          <script>
+                          var a=document.getElementById("hipersensibilidad4");
+                          a.setAttribute("checked","true")
+                          </script>
+                {% endif %}
+
+                {% if sintoma.hipersensibilidad == "T" %}
+                          <script>
+                          var a=document.getElementById("hipersensibilidad5");
+                          a.setAttribute("checked","true")
+                          </script>
+                {% endif %}
+
+                {% if sintoma.halitosis in "S" %}
+                      <script>
+                      var a=document.getElementById("halitosis1");
+                      a.setAttribute("checked","true")
+                      </script>
+                % else %}
+                      <script>
+                      var a=document.getElementById("halitosis2");
+                      a.setAttribute("checked","true")
+                      </script>
+                {% endif %}
+
+
+                {% if sintoma.sangradoEncias in "S" %}
+                      <script>
+                      var a=document.getElementById("sangradoEncias1");
+                      a.setAttribute("checked","true")
+                      </script>
+                {% else %}
+                      <script>
+                      var a=document.getElementById("sangradoEncias2");
+                      a.setAttribute("checked","true")
+                      </script>
+                {% endif %}
+
+
+
+                {% if sintoma.xerostomia in "S" %}
+                      <script>
+                      var a=document.getElementById("xerostomia1");
+                      a.setAttribute("checked","true")
+                      </script>
+                {% else %}
+                      <script>
+                      var a=document.getElementById("xerostomia2");
+                      a.setAttribute("checked","true")
+                      </script>
+                {% endif %}
+
+                {% if sintoma.bruxismo in "S" %}
+                      <script>
+                      var a=document.getElementById("bruxismo1");
+                      a.setAttribute("checked","true")
+                      </script>
+                {% else %}
+                      <script>
+                      var a=document.getElementById("bruxismo2");
+                      a.setAttribute("checked","true")
+                      </script>
+                {% endif %}
+
+
+            </div>
+     </div>
+</div>
+
+        </form>
+    <script>
+     function editarFormulario(){
+         document.getElementById("form1").onsubmit=function(){
+             document.getElementById("nombre").disabled=false;
+             document.getElementById("apellido").disabled=false;
+             document.getElementById("direccion").disabled=false;
+             document.getElementById("fechaNacimiento").disabled=false;
+             document.getElementById("telefono").disabled=false;
+             document.getElementById("guardar").disabled=false;
+             document.getElementById("ocupacion").disabled=false;
+
+
+             document.getElementById("sexo1").disabled=false;
+             document.getElementById("sexo2").disabled=false;
+             document.getElementById("enfermedadesCardiacas").disabled=false;
+             document.getElementById("presionArterial1").disabled=false;
+             document.getElementById("presionArterial2").disabled=false;
+             document.getElementById("presionArterial3").disabled=false;
+             document.getElementById("transtornosSanguineos").disabled=false;
+             document.getElementById("alergias").disabled=false;
+             document.getElementById("medicacion").disabled=false;
+             document.getElementById("otrasEnfermedades").disabled=false;
+             document.getElementById("halitosis1").disabled=false;
+             document.getElementById("halitosis2").disabled=false;
+             document.getElementById("hipersensibilidad1").disabled=false;
+             document.getElementById("hipersensibilidad2").disabled=false;
+             document.getElementById("hipersensibilidad3").disabled=false;
+             document.getElementById("hipersensibilidad4").disabled=false;
+             document.getElementById("hipersensibilidad5").disabled=false;
+             document.getElementById("sangradoEncias1").disabled=false;
+             document.getElementById("sangradoEncias2").disabled=false;
+             document.getElementById("xerostomia1").disabled=false;
+             document.getElementById("xerostomia2").disabled=false;
+             document.getElementById("bruxismo1").disabled=false;
+             document.getElementById("bruxismo2").disabled=false;
+             document.getElementById("guardar").disabled=false;
+
+             alert("llego")
+             return false;
+         }
+     }
+    function guardarFormulario(){
+         document.getElementById("form1").onsubmit=function(){
+             return true;
+         }
+     }
+    function borrarFormulario(){
+         document.getElementById("form1").onsubmit=function(){
+             return true;
+         }
+     }
+    </script>
+{% endblock %}

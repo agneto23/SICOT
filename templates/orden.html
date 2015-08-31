@@ -1,0 +1,43 @@
+{% extends "menu.html" %}
+{% load staticfiles %}
+{% block content %}
+
+
+<body>
+<table border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr height="40px">
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td width="270"> <button type="button" style="font-size: 18px; width: 350px; height: 50px"  class="btn btn-default" aria-label="Left Align" onclick=" window.location.href='{% url 'gestionarorden' %}' " >
+        <span class="glyphicon glyphicon-cog" aria-hidden="true" > </span>   GESTIONAR ORDEN DE TRABAJO
+    </button></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td><button type="button" style="font-size: 18px; width: 350px; height: 50px"  class="btn btn-default" aria-label="Left Align" onclick=" window.location.href='{% url 'gestionarcliente' %}' " >
+        <span class="glyphicon glyphicon-user" aria-hidden="true" > </span>   GESTIONAR CLIENTE
+    </button></td></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+
+
+
+  </tr>
+</table>
+
+
+{% endblock content %}

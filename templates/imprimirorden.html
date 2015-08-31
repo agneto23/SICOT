@@ -1,0 +1,283 @@
+<body onload="window.print()">
+
+<form  method="post"  id="formulario">
+
+    {% csrf_token %}
+
+    <table id="tabla" border="0" name="tabla" width="900" border="0" cellspacing="0" cellpadding="0" align="center">
+
+        <tr>
+
+            <td width="100"></td>
+            <td width="100"></td>
+            <td width="100">&nbsp;</td>
+            <td width="100">&nbsp;</td>
+            <td width="100">&nbsp;</td>
+            <td width="80">&nbsp;</td>
+            <td width="100">&nbsp;</td>
+            <td width="100">&nbsp;</td>
+
+        </tr>
+        <tr>
+
+            <td colspan="8" align="center" > <font color="black" face="Arial" size=4> <b> ATECOM COMPUTERS  &nbsp;  &nbsp;  &nbsp;  &nbsp; </b></font>  </td>
+
+
+        </tr>
+        <tr>
+            <td colspan="8" class="titulos" height="10"><hr /></td>
+        </tr>
+        <tr>
+
+
+            <td></td>
+            <td style="height: 30px ;"><label> <font color="black" face="Arial" size=3> <b>Nombre: </b> </font></label>  </td>
+            <td colspan="2">
+
+
+                <label> <font color="black" face="Arial" size=3> {{ cli.cli_nombre }} {{ cli.cli_apellido }} </font></label>
+                 </td>
+
+            <td> </td>
+            <td   style="height: 30px" valign="middle"><label> <font color="black" face="Arial" size=3><b>Numero: </b> </font></label>  </td>
+            <td>
+                <label> <font color="black" face="Arial" size=3> {{ ord.ord_numero }} </font></label>
+
+               </td>
+            <script !src="">
+
+            </script>
+
+        </tr>
+        <tr>
+
+            <td></td>
+
+            <td><label> <font color="black" face="Arial" size=3> <b> Fecha Recepcion: </b> </font></label>  </td>
+            <td colspan="2" >
+
+                 <label> <font color="black" face="Arial" size=3> {{ ord.ord_fechar|date:"Y-m-d" }} </font></label>
+              </td>
+            <td></td>
+            <td ><label> <font color="black" face="Arial" size=3> <b>Fecha E: </b> </font></label> </td>
+            <td colspan="2">
+
+                <label> <font color="black" face="Arial" size=3> {{ ord.ord_fechae|date:"Y-m-d" }} </font></label>
+                 </td>
+
+
+        </tr>
+
+
+        <tr>
+
+            <td></td>
+
+            <td style="height: 30px" valign="middle"><label> <font color="black" face="Arial" size=3><b>Tipo: </b></font></label>  </td>
+            <td colspan="2" >  <label> <font color="black" face="Arial" size=3> {{ ord.ord_tipo }} </font></label> </td>
+            <td>&nbsp;</td>
+            <td  valign="middle">  <label> <font color="black" face="Arial" size=3><b>Estado:</b></font></label> </td>
+            <td colspan="2" >  <label> <font color="black" face="Arial" size=3> {{ ord.ord_estado }} </font></label> </td>
+
+
+
+            <script>
+                var est = "{{ ord.ord_estado }}"
+
+                document.getElementById("cmbEst").value = est
+
+                var tipo = "{{ ord.ord_tipo }}"
+
+                document.getElementById("cmbTipo").value = tipo
+
+
+
+
+            </script>
+        </tr>
+
+        <tr>
+
+        </tr>
+        <tr>
+
+            <td></td>
+            <td colspan="2"> <br> <label> <font color="black" face="Arial" size=3><b>Detalle Equipo: </b></font></label>  </td>
+            <td>  </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+
+        </tr>
+
+        <tr>
+
+            <td></td>
+            <td align="center" colspan="6"> <br> <textarea name="txtDetalle"  style="width: 660px ; height: 60px ;color: black" id="txtDetalle" class="form-control" placeholder="Ingrese detalle de la orden de trabajo">{{ ord.ord_detalle}}</textarea></td>
+            <td > </td>
+
+        </tr>
+
+        <tr>
+
+            <td></td>
+            <td colspan="2"> <br><label> <font color="black" face="Arial" size=3><b>Detalle Servicio: </b></font></label>  </td>
+            <td>  </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+
+        </tr>
+
+        <tr>
+
+            <td></td>
+            <td align="center" colspan="6"> <br> <textarea name="txtSer" style="width: 660px ; height: 60px ;color: black" id="txtSer" class="form-control" placeholder="Ingrese detalle de la orden de trabajo">{{ ord.ord_servicio }}</textarea><br></td>
+            <td > </td>
+
+
+
+        </tr>
+
+        <tr>
+
+
+
+            <td></td>
+            <td colspan="2"> <br><label> <font color="black" face="Arial" size=3><b>Productos/Servicios</b> </font> <br></label>  </td>
+            <td> <input type="hidden" name="totalproductos"  style=" width: 400px ; height: 30px ;color: black" id="totalproductos" value=0 > </td>
+            <td>&nbsp;</td>
+            <td align="center"><br> <label> <font color="black" face="Arial" size=3><b>Cantidad</b></font></label><br></td>
+            <td align="center"> <br><label> <font color="black" face="Arial" size=3><b>Precio</b> </font></label><br></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+
+        </tr>
+
+
+        {% if orden1.exists %}
+            {% for item in orden1  %}
+
+                <tbody>
+                <tr id="tr{{ item.id }}">
+
+ <br>
+
+                    <td ></td>
+
+
+                    <td colspan="4" align="center">
+
+
+
+                        <input type="text" name="Pro{{ item.pro_id_id }}"  style=" width: 400px ; height: 30px ;color: black" id="Pro{{ item.pro_id_id}}" class="form-control" onclick="buscarpro(this)"  placeholder="Ingrese nombre producto">
+                        <input type="hidden" name="pronom1"  style=" width: 400px ; height: 30px ;color: black" id="pronom1">
+
+
+                    </td>
+
+                    <td  height="30" align="center">
+
+                       <input type="text" name="1" id="1" onchange="calcular(this)"  style=" width: 60px ; height: 30px ;color: black; text-align: center"  class="form-control" placeholder="Ingrese nombre producto" value="{{ item.ordp_cantidad}}" >
+
+
+                    <td  height="30" align="center">
+
+                      <input type="text" name="pre1" id="pre1"  style=" width: 80px ; height: 30px ;color: black;text-align: center"  class="form-control" placeholder="Ingrese nombre producto" value="{{ item.ordp_precio }}">
+
+
+ </td>
+
+
+
+                </tr>
+                </tbody>
+            {% endfor %}
+            {% for i in listapro %}
+
+                <script !src="">
+
+                    var num = "{{ i.pro_nombre }}"
+
+                    document.getElementById("Pro"+ {{ i.pro_id }}).value = num
+
+
+
+                </script>
+
+            {% endfor %}
+
+        {% else %}
+            <tbody>
+            <tr id="tr{{ item.id }}">
+
+
+
+                <td ></td>
+
+                <td colspan="4" align="center">
+                    <br>
+                    <input type="text" name="Pro1"  style=" width: 400px ; height: 30px ;color: black" id="Pro1" class="form-control" onclick="buscarpro(this)"  placeholder="Ingrese nombre producto">
+                    <input type="hidden" name="pronom1"  style=" width: 400px ; height: 30px ;color: black" id="pronom1" >
+                </td>
+
+                <td  height="30" align="center">
+                    <br>
+                    <input type="text" name="1" id="1" onchange="calcular(this)"  style=" width: 60px ; height: 30px ;color: black"  class="form-control" placeholder="Ingrese nombre producto" >
+                </td>
+
+                <td  height="30" align="center">
+                    <br>
+                    <input type="text" name="pre1" id="pre1"  style=" width: 80px ; height: 30px ;color: black"  class="form-control" placeholder="Ingrese nombre producto">
+                </td>
+
+
+
+
+
+            </tr>
+        {% endif %}
+
+
+
+    </table>
+
+
+
+
+
+
+
+
+    <table name="tabla23" id="tabla23" border="0" align="center">
+
+        <tr>
+
+            <br>
+
+            <td width="100">&nbsp;</td>
+            <td width="100">&nbsp;</td>
+            <td width="100">&nbsp;</td>
+            <td width="100">&nbsp;</td>
+            <td width="100">&nbsp;</td>
+            <td width="35">&nbsp;</td>
+            <td width="120"><label> <font color="black" face="Arial" size=4><b>Total Precio:</b></font></label></td>
+
+            <td width="100" align="center">
+                <label> <font color="black" face="Arial" size=4> {{ ord.ord_precio }} </font></label>
+                   <td width="100">&nbsp;</td>
+
+        </tr>
+        <tr>
+            <td colspan="9" class="titulos" height="10"><hr /></td>
+        </tr>
+
+    </table>
+</form>
+
+</body>

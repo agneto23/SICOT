@@ -1,0 +1,636 @@
+
+{% extends "menu.html" %}
+{% load staticfiles %}
+{% block content %}
+
+    <form  method="post"  id="formulario">
+
+        {% csrf_token %}
+
+        <table id="tabla" border="0" name="tabla" width="1000" border="0" cellspacing="0" cellpadding="0" align="center">
+
+            <tr>
+                <td width="50"></td>
+                <td width="50"></td>
+                <td width="20"></td>
+                <td width="80">&nbsp;</td>
+                <td width="90">&nbsp;</td>
+                <td width="50">&nbsp;</td>
+                <td width="40">&nbsp;</td>
+                <td width="100">&nbsp;</td>
+                <td width="100">&nbsp;</td>
+
+            </tr>
+            <tr>
+
+                <td colspan="9" align="center" > <font color="black" face="Arial" size=4> <b> MODIFICAR ORDEN DE TRABAJO  &nbsp;  &nbsp;  &nbsp;  &nbsp; </b></font>  </td>
+
+
+            </tr>
+            <tr>
+                <td colspan="9" class="titulos" height="10"><hr /></td>
+            </tr>
+            <tr>
+                <td></td>
+
+                <td></td>
+                <td style="height: 30px ;"><label> <font color="black" face="Arial" size=3>Nombre: </font></label>  </td>
+                <td colspan="2">
+
+                    <br><input type="text" name="txtNombre" style=" width: 320px ; height: 30px ;color: black" id="txtNombre" disabled class="form-control"  value="{{ cli.cli_nombre }} {{ cli.cli_apellido }}" placeholder="Ingrese nombre cliente">
+                    <input type="hidden" name="idcliente" style=" width: 320px ; height: 30px ;color: black" id="idcliente" value="{{ cli.cli_cedula }}"> </td>
+
+                <td> </td>
+                <td   style="height: 30px" valign="middle"><label> <font color="black" face="Arial" size=3>Numero: </font></label>  </td>
+                <td><br><input  type="text" name="txtNumero"  style=" width: 70px ; height: 30px ;color: black"  id="txtNumero" class="form-control" value="{{ ord.ord_numero }}" placeholder="No." disabled>
+                    <input  type="hidden" name="Numero"  style=" width: 70px ; height: 30px ;color: black"  id="Numero"  value="{{ ord.ord_numero }}"  ></td>
+                <script !src="">
+
+                </script>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+
+                <td><label> <font color="black" face="Arial" size=3>Fecha R: &nbsp; &nbsp; &nbsp; &nbsp;</font></label>  </td>
+                <td colspan="2" > <input class="form-control" disabled style="width: 150px;height: 30px" type="date" id="fechaR"  name="fechaR" value="{{ ord.ord_fechar|date:"Y-m-d" }}"/> </td>
+                <td></td>
+                <td ><label> <font color="black" face="Arial" size=3>Fecha E: &nbsp; &nbsp; &nbsp; &nbsp;</font></label> </td>
+                <td colspan="2">  <input class="form-control"  style="width: 150px;height: 30px" type="date" id="fechaE"  name="fechaE" value="{{ ord.ord_fechae|date:"Y-m-d" }}" /> </td> </td>
+
+
+            </tr>
+
+
+            <tr>
+                <td></td>
+                <td></td>
+
+                <td style="height: 30px" valign="middle"><label> <font color="black" face="Arial" size=3>Tipo: </font></label>  </td>
+                <td colspan="2" > <select  class="form-control" style="width: 150px ; height: 30px; vertical-align: middle" name="cmbTipo" id="cmbTipo" SIZE=1 value="{{ ord.ord_tipo }}" >
+                    <option value="Hardware">Hardware</option>
+                    <option value="Software">Software</option>
+                    <option value="Completa">Completa</option>
+                </select>  </td>
+                <td>&nbsp;</td>
+                <td  valign="middle"> <br> <label> <font color="black" face="Arial" size=3>Estado: &nbsp; &nbsp; &nbsp; &nbsp;</font></label> </td>
+                <td colspan="2" > <select  class="form-control" style="width: 150px ; height: 30px; vertical-align: middle" name="cmbEst" id="cmbEst" SIZE=1 >
+                    <option value="h">Habilitada</option>
+                    <option value="a">Anulada</option>
+                    <option value="f">Finalizada</option>
+                </select>  </td>
+
+
+
+                <script>
+                    var est = "{{ ord.ord_estado }}"
+
+                    document.getElementById("cmbEst").value = est
+
+                    var tipo = "{{ ord.ord_tipo }}"
+
+                    document.getElementById("cmbTipo").value = tipo
+
+
+
+
+                </script>
+            </tr>
+
+            <tr>
+
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td colspan="2"> <br> <label> <font color="black" face="Arial" size=3>Detalle Equipo: </font></label>  </td>
+                <td>  </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td align="center" colspan="6">  <textarea name="txtDetalle"  style="width: 660px ; height: 60px ;color: black" id="txtDetalle" class="form-control" placeholder="Ingrese detalle de la orden de trabajo">{{ ord.ord_detalle}}</textarea></td>
+                <td > </td>
+
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td colspan="2"> <label> <font color="black" face="Arial" size=3>Detalle Servicio: </font></label>  </td>
+                <td>  </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td align="center" colspan="6">  <textarea name="txtSer" style="width: 660px ; height: 60px ;color: black" id="txtSer" class="form-control" placeholder="Ingrese detalle de la orden de trabajo">{{ ord.ord_servicio }}</textarea></td>
+                <td > </td>
+
+
+
+            </tr>
+
+            <tr>
+                <td></td>
+                <td></td>
+                <td colspan="2"> <label> <font color="black" face="Arial" size=3>Productos/Servicios </font> </label>  </td>
+                <td> <input type="hidden" name="totalproductos"  style=" width: 400px ; height: 30px ;color: black" id="totalproductos" value=0 >
+
+                </td>
+                <td align="center"> <label> <font color="black" face="Arial" size=3>Cantidad</font></label></td>
+                <td align="center"> <label> <font color="black" face="Arial" size=3>Precio </font></label></td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+
+            </tr>
+            {% if orden1.exists %}
+                {% for item in orden1  %}
+
+                    <tbody>
+                    <tr id="tr{{ item.id }}">
+
+
+                        <td ></td>
+                        <td ></td>
+
+
+                        <td colspan="3" align="center">
+                            <br>
+
+
+
+                            <input type="text" name="Pro{{ item.pro_id_id }}"  style=" width: 400px ; height: 30px ;color: black" id="Pro{{ item.pro_id_id}}" class="form-control" onclick="buscarpro(this)"  placeholder="Ingrese nombre producto">
+                            <input type="hidden" name="pronom1"  style=" width: 400px ; height: 30px ;color: black" id="pronom1">
+
+
+                        </td>
+
+                        <td  height="30" align="center">
+                            <br>
+                            <input type="text" name="1" id="1" onchange="calcular(this)"  style=" width: 60px ; height: 30px ;color: black"  class="form-control" placeholder="Ingrese nombre producto" value="{{ item.ordp_cantidad}}" >
+                        </td>
+
+                        <td  height="30" align="center">
+                            <br>
+                            <input type="text" name="pre1" id="pre1"  style=" width: 80px ; height: 30px ;color: black"  class="form-control" placeholder="Ingrese nombre producto" value="{{ item.ordp_precio }}">
+                        </td>
+
+                        <td  height="30">
+
+                            <button style="height: 30px; width: 50px" aria-label="Left Align" class="btn btn-default" type="button" onclick="producto()"  >
+                                <b> +  </b>
+                            </button>
+
+                            <button style="height: 30px; width: 50px" aria-label="Left Align" class="btn btn-default" name="btnquitar" id="btnquitar" type="button" onclick="quitar()" >
+                                <b> -  </b>
+                            </button>
+                        </td>
+
+
+
+                    </tr>
+                    </tbody>
+                {% endfor %}
+                {% for i in listapro %}
+
+                    <script !src="">
+
+                        var num = "{{ i.pro_nombre }}"
+
+                        document.getElementById("Pro"+ {{ i.pro_id }}).value = num
+
+
+
+                    </script>
+
+                {% endfor %}
+
+            {% else %}
+                <tbody>
+                <tr id="tr{{ item.id }}">
+
+
+                    <td ></td>
+                    <td ></td>
+
+                    <td colspan="3" align="center">
+                        <br>
+                        <input type="text" name="Pro1"  style=" width: 400px ; height: 30px ;color: black" id="Pro1" class="form-control" onclick="buscarpro(this)"  placeholder="Ingrese nombre producto">
+                        <input type="hidden" name="pronom1"  style=" width: 400px ; height: 30px ;color: black" id="pronom1" >
+                        <input type="hidden" name="nuevostock1"  style=" width: 400px ; height: 30px ;color: black" id="nuevostock1" value=0 >
+                    </td>
+
+                    <td  height="30" align="center">
+                        <br>
+                        <input type="text" name="1" id="1" onchange="calcular(this)"  style=" width: 60px ; height: 30px ;color: black"  class="form-control" placeholder="Ingrese nombre producto" >
+                    </td>
+
+                    <td  height="30" align="center">
+                        <br>
+                        <input type="text" name="pre1" id="pre1"  style=" width: 80px ; height: 30px ;color: black"  class="form-control" placeholder="Ingrese nombre producto">
+                    </td>
+
+                    <td  height="30">
+
+                        <button style="height: 30px; width: 50px" aria-label="Left Align" class="btn btn-default" type="button" onclick="producto()"  >
+                            <b> +  </b>
+                        </button>
+
+                        <button style="height: 30px; width: 50px" aria-label="Left Align" class="btn btn-default" name="btnquitar" id="btnquitar" type="button" onclick="quitar()" >
+                            <b> -  </b>
+                        </button>
+                    </td>
+
+
+
+                </tr>
+            {% endif %}
+
+
+
+        </table>
+
+
+
+
+
+
+
+
+        <table name="tabla23" id="tabla23" border="0" align="center">
+
+            <tr>
+                <td>&nbsp;</td>
+                <td width="100">&nbsp;</td>
+                <td width="20">&nbsp;</td>
+                <td width="80">&nbsp;</td>
+                <td width="55">&nbsp;</td>
+                <td width="50">&nbsp;</td>
+                <td width="100"><label> <font color="black" face="Arial" size=3>Total Precio:</font></label></td>
+
+                <td width="100" align="center"><br><input  value="{{ ord.ord_precio }}" type="text" name="pretot" id="pretot"  style=" width: 80px ; height: 30px ;color: black"  class="form-control" placeholder="Ingrese nombre producto"></td>
+                <td width="100">&nbsp;</td>
+
+            </tr>
+            <tr>
+                <td colspan="9" class="titulos" height="10"><hr /></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+                <td colspan="1"> <button name="guardar" id="guardar" type="submit" style="font-size: 15px; width: 190px"   class="btn btn-default" aria-label="Left Align"  >
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" > </span>  <b> GUARDAR  </b>
+                </button>  </td>
+                <td>&nbsp;</td>
+                <td colspan="3"> <button type="button" style="font-size: 15px; width: 190px"   class="btn btn-default" aria-label="Left Align"  onclick="  window.open('{% url 'imprimirorden' ord.ord_id %}','_blank')  "  >
+                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true" > </span>  <b> IMPRIMIR  </b>
+                </button> &nbsp;  </td>
+                <td>&nbsp;</td>
+
+
+
+            </tr>
+        </table>
+    </form>
+
+
+    <div  id="dialog" class="modal-content" >
+        <div id="resultado" >
+        </div>
+    </div>
+
+
+    <script>
+
+        function checkAGE()
+        {
+            if (!confirm
+                    ("Desea entrar a esta pagina, presione ACEPTAR, si no presione CANCELAR"))
+                history.go(-1);return " "}
+        document.writeln(checkAGE())
+
+
+
+
+        if($('#cmbEst').val() == "f"){
+
+            document.getElementById("cmbEst").disabled = true
+            document.getElementById("cmbTipo").disabled = true
+            document.getElementById("fechaE").disabled = true
+            document.getElementById("txtDetalle").disabled = true
+            document.getElementById("txtSer").disabled = true
+            document.getElementById("guardar").disabled = true
+            $("input[id^='Pro1']").disabled = true
+
+
+        }
+
+
+
+
+        var contador = 1;
+        var vali = 1;
+        var dir = 1;
+        var precio=new Array();
+        var stockm=new Array();
+        var stocka=new Array();
+        var totalprecio = 0
+
+        function producto() {
+
+
+            contador++;
+            dir++;
+            vali++;
+            $('#tabla tr:last').after('<tr><td></td> <td></td><td colspan="3" align="center"> <br><input type="text" name="Pro'+ vali +'" style=" width: 400px ; height: 30px ;color: black" id="Pro'+ vali +'" class="form-control" onclick="buscarpro(this)" placeholder="Ingrese nombre producto">  <input type="hidden" name="pronom'+ vali +'"  style=" width: 400px ; height: 30px ;color: black" id="pronom'+ vali +'" > <input type="hidden" name="nuevostock'+ vali +'"  style=" width: 400px ; height: 30px ;color: black" id="nuevostock'+ vali +'" value=0 > </td> <td  height="30" align="center">'
+                    +' <br> <input type="text" name="'+ vali +'" id="'+ vali +'" onchange="calcular(this)"  style=" width: 60px ; height: 30px ;color: black"  class="form-control" placeholder="Ingrese nombre producto" > '
+                    +'</td> <td  height="30" align="center"> <br> <input type="text" name="pre'+ vali +'" id="pre'+ vali +'"  style=" width: 80px ; height: 30px ;color: black"  class="form-control" placeholder="Ingrese nombre producto" >  </td>')
+        }
+
+        function quitar() {
+
+            if (dir > 1) {
+                $('#tabla tr:last').remove()
+
+                dir--;
+            }
+        }
+
+
+        function buscarpro(pro){
+
+
+            $( "#dialog" ).dialog({
+
+                class: "modal-content",
+                width: 1100,
+                height: 450,
+                resizable: false,
+                position: { my: 'center', at: 'middle', of: window },
+
+
+
+            });
+
+
+            $.ajax({
+                url: "{% url 'ordenproducto' %}",
+                data: $('#formulario').serialize(),
+                success: function(data){
+                    $("#resultado").html(data);
+                }
+            });
+            $( "#dialog" ).dialog({
+                dialogClass: "no-close",
+                modal: true,
+                closeOnEscape: false,
+
+                buttons: [
+                    {
+                        class: "btn btn-default",
+                        position: "right",
+                        onclick: "valida()",
+                        text: "Aceptar",
+                        click: function() {
+
+                            var textid = ""+pro.id
+
+
+                            var txtidnum =  textid.replace(/[^.0-9]/g,'');
+                            //alert(pilax);
+
+                            var val = $('input:radio[name=group1]:checked').val()
+                            precio[txtidnum] = ($('input:radio[name=group1]:checked').attr("id"));
+
+                            var primera = val.toString().split(" ").reverse();
+                            var primerapri = primera.toString().split(",",2);
+                            var primeraseg = primerapri.toString().split(",").reverse();
+                            stocka[txtidnum] = primeraseg.toString().split(",",1);
+                            alert(stocka[txtidnum]);
+
+                            var segunda = val.toString().split(" ").reverse();
+                            stockm[txtidnum] = segunda.toString().split(",",1);
+                            alert(stockm[txtidnum]);
+
+                            var nombrepro = val.toString().split(" ",1);
+
+
+
+
+                            var bandera = "si";
+
+
+
+
+                            for(var i=1 ; i<=vali; i++){
+
+
+
+                                if($("#Pro"+i).val() == val){
+                                    alert("Producto ya seleccionado")
+                                    $("#dialog").dialog("close");
+                                    bandera = "no"
+                                }
+
+                            }
+
+                            if(bandera == "si"){
+
+                                document.getElementById(pro.id).value = val;
+                                document.getElementById("pronom"+txtidnum).value = nombrepro;
+
+
+
+                                document.getElementById("totalproductos").value = parseInt($("#totalproductos").val()) + 1
+
+
+                            }
+
+
+
+
+
+                            $("#dialog").dialog("close");
+
+                        }
+
+                    },
+
+                    {
+                        class: "btn btn-default",
+                        position: "right",
+                        text: "Cancelar",
+                        click: function() {
+                            $( this ).dialog( "close" );
+                        }
+
+                    }
+                ]
+
+            });
+
+        }
+
+
+
+        function calcular(cantidad) {
+
+
+            //alert(pro.id);
+            var can = "#"+cantidad.id;
+            //alert(ya);
+            //alert($(ya).val());
+            //alert(precio[pro.id]);
+
+
+            var una = $(can).val();
+            var dos = precio[cantidad.id];
+
+
+
+            var dato = dos.replace(',','.')
+
+            alert(una);
+
+            if(una > parseInt(stocka[cantidad.id])){
+
+
+            alert("La cantidad actual del producto es: "+stocka[cantidad.id])
+
+            }else{
+
+                var resta = parseInt(stocka[cantidad.id]) - una
+
+                if(resta <= parseInt(stockm[cantidad.id])){
+
+                      alert("El producto cuenta con una stock minimo ("+ stockm[cantidad.id] +") ")
+
+                      var valor = una*parseFloat(dato)
+
+                       totalprecio = totalprecio + valor
+
+
+
+                       var stockactual =  parseInt(stocka[cantidad.id]) - una
+
+                      document.getElementById("nuevostock"+cantidad.id).value = ""+stockactual;
+
+
+                      alert(document.getElementById("nuevostock"+cantidad.id).value);
+
+                      document.getElementById("pre"+cantidad.id).value = parseFloat(valor);
+                      document.getElementById("pretot").value = parseFloat(totalprecio);
+
+                }else{
+
+                      var valor = una*parseFloat(dato)
+
+                       totalprecio = totalprecio + valor
+
+
+
+                       var stockactual =  parseInt(stocka[cantidad.id]) - una
+
+                      document.getElementById("nuevostock"+cantidad.id).value = ""+stockactual;
+
+
+                      alert(document.getElementById("nuevostock"+cantidad.id).value);
+
+                      document.getElementById("pre"+cantidad.id).value = parseFloat(valor);
+                      document.getElementById("pretot").value = parseFloat(totalprecio);
+
+                }
+
+
+
+
+
+            }
+
+        }
+
+        function nuevocli() {
+
+            $( "#dialog" ).dialog({
+
+                class: "modal-content",
+                width: 1000,
+                height: 450,
+                resizable: false,
+                position: { my: 'center', at: 'middle', of: window },
+
+
+
+            });
+
+
+            $.ajax({
+                url: "{% url 'nuevocli' %}",
+                data: $('#formulario').serialize(),
+                success: function(data){
+                    $("#resultado").html(data);
+                }
+            });
+            $( "#dialog" ).dialog({
+                dialogClass: "no-close",
+                modal: true,
+                closeOnEscape: false,
+
+                buttons: [
+                    {
+                        class: "btn btn-default",
+                        position: "right",
+                        onclick: "valida()",
+                        text: "Aceptar",
+                        click: function() {
+                            var val = $('input:radio[name=group1]:checked').val()
+                            var ced = $('input:radio[name=group1]:checked').attr("id");
+
+                            alert(ced);
+
+                            document.getElementById("Pro1").value = val;
+
+
+                            $("#dialog").dialog("close");
+
+                        }
+
+                    },
+
+                    {
+                        class: "btn btn-default",
+                        position: "right",
+                        text: "Cancelar",
+                        click: function() {
+                            $( this ).dialog( "close" );
+                        }
+
+                    }
+                ]
+
+            });
+
+
+        }
+
+
+    </script>
+{% endblock %}

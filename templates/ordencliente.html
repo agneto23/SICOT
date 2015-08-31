@@ -1,0 +1,187 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    {% load staticfiles %}
+</head>
+<body >
+
+<script >
+    function valida() {
+        formulario = document.getElementById("formulario");
+        for (var i = 0; i < formulario.elements.length; i++) {
+            var elemento = formulario.elements[i];
+            if (elemento.type == "checkbox") {
+                if (!elemento.checked) {
+                    alert("Error");
+                }
+            }
+        }
+    }
+</script>
+
+
+<form  method="post" id="formulario">
+
+    {% csrf_token %}
+
+    <div class="table-responsive" >
+
+        <table width="1000" border="0"  align="center">
+            <tr>
+                <td width="56" class="titulos"></td>
+                <td height="5" colspan="2" class="titulos"></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td width="80">&nbsp;</td>
+                <td width="20">&nbsp;</td>
+                <td width="80">&nbsp;</td>
+                <td width="100">&nbsp;</td>
+                <td width="180">&nbsp;</td>
+                <td width="100">&nbsp;</td>
+                <td width="100">&nbsp;</td>
+
+
+            </tr>
+            <tr>
+                <td colspan="8" align="center" > <font color="black" face="Arial" size=4> <b>CLIENTE </b></font>  </td>
+
+            </tr>
+
+
+
+            <tr>
+                <td colspan="8" class="titulos" height="10"><hr /></td>
+            </tr>
+
+
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td align="left" colspan="1" style="height: 30px; width: 100px" valign="middle"><label> <font color="black" face="Arial" size=3>Buscar:&nbsp;</font></label>
+
+                </td>
+
+                <td align="left" colspan="2"><br> <input type="text" name="txtBuscar" style=" width: 260px ; height: 30px ;color: black" id="txtBuscar" class="form-control" placeholder="Ingrese proveedor a buscar"> </td>
+                <td>&nbsp;</td>
+
+            </tr>
+
+            <tr class="table table-hover">
+                <th height="30" width="100">&nbsp;</th>
+                <th  height="30" width="100" > <font color="black" face="Arial" size=2> Cedula </font></th>
+                <th height="30"  width="100"><font color="black" face="Arial" size=2> Nombre </font></th>
+                <th height="30"  width="100"><font color="black" face="Arial" size=2> Apellido </font></th>
+                <th height="30"width="100"><font color="black" face="Arial" size=2> Telefono </font></th>
+                <th height="30"  width="100"><font color="black" face="Arial" size=2> Direccion </font></th>
+                <th height="30"  width="100"><font color="black" face="Arial" size=2> Ciudad </font></th>
+                <th height="30"  width="100"><font color="black" face="Arial" size=2> Seleccion </font></th>
+
+
+            </tr>
+
+
+            <script >
+                var contador = 0;
+            </script>
+            {% for item in cli %}
+
+                <tbody class="table table-hover">
+                <tr id="tr{{ item.id }}">
+                    <td  height="40"></td>
+                    <td  height="40" >{{ item.cli_cedula}}</td>
+                    <td  height="40" >{{ item.cli_nombre }}</td>
+                    <td  height="40" >{{ item.cli_apellido }}</td>
+                    <td  height="40" >{{ item.cli_telefono }}</td>
+                    <td  height="40" >{{ item.cli_direccion }}</td>
+                    <td  height="40" >{{ item.cli_ciudad }}</td>
+                    <td  height="30">
+
+                        <script>
+                            contador++;
+                        </script>
+
+                        <input style="height: 18px; width: 18px"  name="group1" id="{{ item.cli_cedula}}" type="radio" value="{{ item.cli_nombre }} {{ item.cli_apellido }}"  >
+
+                        </input>
+
+
+                    </td>
+
+                </tr>
+
+
+                </tbody>
+            {% endfor %}
+
+        <tr>
+                <td colspan="8" class="titulos" height="10"><hr /></td>
+            </tr>
+
+             <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+
+                    <td colspan="2" align="right" > <button type="button" style="font-size: 15px; width: 190px"   class="btn btn-default" aria-label="Left Align"  onclick="buscar()">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true" > </span>  <b> BUSCAR  </b>
+                    </button> </td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+
+
+
+                </tr>
+
+
+        </table>
+    </div>
+
+</form>
+
+<div id="dialog"  >
+        <div id="resultado" >
+        </div>
+    </div>
+
+</body>
+</html>
+
+<script !src="">
+
+    function buscar(){
+        alert("ya");
+
+        $( "#dialog" ).dialog({
+
+                class: "modal-content",
+                width: 1000,
+                height: 450,
+                resizable: false,
+                position: { my: 'center', at: 'middle', of: window },
+
+
+
+            });
+
+        $.ajax({
+
+                url: "{% url 'ordencliente' %}",
+                data: $('#formulario').serialize(),
+                success: function(data){
+                    $("#resultado").html(data);
+                }
+            });
+
+    }
+</script>
+
+

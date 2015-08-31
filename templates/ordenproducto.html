@@ -1,0 +1,134 @@
+
+{% load staticfiles %}
+
+
+
+
+    <form  method="post" id="formulario">
+
+        {% csrf_token %}
+
+        <div class="table-responsive" >
+
+            <table width="1000" border="0"  align="center">
+                <tr>
+                    <td width="56" class="titulos"></td>
+                    <td height="5" colspan="2" class="titulos"></td>
+                    <td colspan="3"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td width="100">&nbsp;</td>
+                    <td width="20">&nbsp;</td>
+                    <td width="80">&nbsp;</td>
+                    <td width="100">&nbsp;</td>
+                    <td width="50">&nbsp;</td>
+                    <td width="100">&nbsp;</td>
+                    <td width="100">&nbsp;</td>
+                    <td width="100">&nbsp;</td>
+                    <td width="100">&nbsp;</td>
+                    <td width="100">&nbsp;</td>
+                    <td width="100">&nbsp;</td>
+
+
+                </tr>
+                <tr>
+
+                    <td colspan="12" align="center" > <font color="black" face="Arial" size=4> <b> BUSCAR PRODUCTO </b></font>  </td>
+
+
+                </tr>
+                <tr>
+                    <td colspan="12" class="titulos" height="10"><hr /></td>
+                </tr>
+
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+
+                    <td align="right" colspan="3" style="height: 30px; width: 100px" valign="middle"><label> <font color="black" face="Arial" size=3>Buscar: &nbsp; &nbsp; &nbsp; &nbsp; </font></label>
+
+                    </td>
+                    <td colspan="5"><br> <input type="text" name="txtBuscar" style=" width: 250px ; height: 30px ;color: black" id="txtBuscar" class="form-control" placeholder="Ingrese producto a buscar"> </td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                </tr>
+
+
+                <tr class="table table-hover">
+
+                    <th  height="30" width="100" > <font color="black" face="Arial" size=2> Proveedor </font></th>
+                    <th height="30"  width="100"><font color="black" face="Arial" size=2> Categoria </font></th>
+                    <th height="30" width="100"><font color="black" face="Arial" size=2> Id </font></th>
+                    <th height="30"  width="100"><font color="black" face="Arial" size=2> Nombre </font></th>
+                    <th height="30"width="100"><font color="black" face="Arial" size=2> Modelo </font></th>
+                    <th height="30"  width="100"><font color="black" face="Arial" size=2> Marca </font></th>
+                    <th height="30"  width="100"><font color="black" face="Arial" size=2> Stock </font></th>
+                    <th height="30"  width="100"><font color="black" face="Arial" size=2> Stock Minimo </font></th>
+                    <th height="30" width="100"><font color="black" face="Arial" size=2> Precio Proveedor </font></th>
+                    <th height="30"  width="140"><font color="black" face="Arial" size=2> Precio Venta </font></th>
+                    <th height="30"  width="100"><font color="black" face="Arial" size=2> Estado </font></th>
+                    <th height="30" width="100"><font color="black" face="Arial" size=2> Seleccion </font></th>
+
+                </tr>
+
+                {% for item in pro %}
+                    <tbody class="table table-hover">
+                    <tr id="tr{{ item.id }}">
+
+
+                        <td  height="40" >{{ item.prov_cedula}}</td>
+                        <td  height="40" >{{ item.cat_id }}</td>
+                        <td  height="40" >{{ item.pro_id }}</td>
+                        <td  height="40" >{{ item.pro_nombre }}</td>
+                        <td  height="40" >{{ item.pro_modelo }}</td>
+                        <td  height="40" >{{ item.pro_marca }}</td>
+                        <td  height="40" >{{ item.pro_stocka }}</td>
+                        <td  height="40" >{{ item.pro_stockm }}</td>
+                        <td  height="40" >{{ item.pro_precio }}</td>
+                        <td  height="40" >{{ item.pro_preciov }}</td>
+                        <td  height="40" >{{ item.pro_estado }}</td>
+                        <td  height="30">
+
+                        <script>
+                            contador++;
+                        </script>
+
+                        <input style="height: 18px; width: 18px"  name="group1" id="{{ item.pro_preciov}}" type="radio" value="{{ item.pro_id}} {{ item.pro_nombre }} {{ item.pro_modelo }} {{ item.pro_marca }} {{ item.pro_stocka }} {{ item.pro_stockm }}"  >
+
+                        </input>
+
+
+                    </td>
+
+                    </tr>
+                    </tbody>
+                {% endfor %}
+
+
+                <tr>
+
+                </tr>
+
+
+                <tr>
+                    <td colspan="12" class="titulos" height="10"><hr /></td>
+                </tr>
+                <tr>
+
+
+                    <td colspan="12" align="center" > <button type="submit" style="font-size: 15px; width: 190px"   class="btn btn-default" aria-label="Left Align"  >
+                        <span class="glyphicon glyphicon-search" aria-hidden="true" > </span>  <b> BUSCAR  </b>
+                    </button> &nbsp; &nbsp; &nbsp; </td>
+
+
+
+                </tr>
+            </table>
+        </div>
+
+
+
+
+
+    </form>

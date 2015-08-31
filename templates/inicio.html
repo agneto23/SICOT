@@ -1,0 +1,92 @@
+{% extends "menu.html" %}
+{% load staticfiles %}
+{% block content %}
+
+<form id="formulario">
+
+<table border="0" align="center" >
+  <tr height="40px">
+    <td width="600">&nbsp;</td>
+
+
+  </tr>
+  <tr>
+
+   <td style="height: 30px" align="CENTER"><label> <font color="black" face="Arial" size=4>LISTADO DE PRODUCTOS STOCK MINIMO/AGOTADOS: </font></label></td>
+
+
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="height: 30px" align="left"><div id="resultado" >
+        </div></td>
+
+
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+      <td style="height: 30px" align="left">&nbsp;</td>
+
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+      <td style="height: 30px" align="left">&nbsp;</td>
+
+  </tr>
+</table>
+
+</form>
+
+
+<script>
+
+
+
+                $.ajax({
+                    url: "{% url 'notificaciones' %}",
+                    dateTime: 'json',
+                    data: $('#formulario').serialize(),
+                    type: 'GET',
+                    success: function (data) {
+                        console.log(data[0]);
+
+                        if (data == null) {
+
+
+
+                        } else {
+
+                            var html="";
+                            for (var i = 0; i < data.length; i++) {
+
+                                  html+="<li style='float:left;font-family:Arial;font-size:17px'><a href='/inventario/gestionarproducto/modificarproducto/"+data[i].pk+"/' ><b> "+data[i].fields['pro_nombre']+" "+data[i].fields['pro_modelo']+" "+data[i].fields['pro_marca']+" </b></a></li> <label> <font color='black' face='Arial' size=3><b> &nbsp;   Stock Actual de: "+data[i].fields['pro_stocka']+" </b> </font></label> <br> ";
+                            }
+
+                            if (data.length == 0){
+                                html+="<label> <font color='black' face='Arial' size=3><b> Ningun Producto   </b> </font></label> ";
+                             $('#resultado').html(html);
+                            }else{
+                                $('#resultado').html(html);
+                            }
+
+
+
+
+
+                        }
+
+                    }
+                });
+
+
+
+</script>
+
+
+{% endblock content %}

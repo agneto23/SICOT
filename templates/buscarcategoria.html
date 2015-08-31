@@ -1,0 +1,114 @@
+
+{% extends "menu.html" %}
+{% load staticfiles %}
+{% block content %}
+
+
+
+    <form  method="post" id="formulario">
+
+        {% csrf_token %}
+
+        <div class="table-responsive" >
+
+            <table width="1000" border="0"  align="center">
+                <tr>
+                    <td width="56" class="titulos"></td>
+                    <td height="5" colspan="2" class="titulos"></td>
+                    <td colspan="3"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td width="100">&nbsp;</td>
+                    <td width="20">&nbsp;</td>
+                    <td width="80">&nbsp;</td>
+                    <td width="100">&nbsp;</td>
+                    <td width="50">&nbsp;</td>
+                    <td width="100">&nbsp;</td>
+                    <td width="100">&nbsp;</td>
+                    <td width="100">&nbsp;</td>
+
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td colspan="7" align="center" > <font color="black" face="Arial" size=4> <b> BUSCAR CATEGORIA </b></font>  </td>
+                    <td>&nbsp;</td>
+
+                </tr>
+                <tr>
+                    <td colspan="9" class="titulos" height="10"><hr /></td>
+                </tr>
+
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+
+                    <td align="right" colspan="2" style="height: 30px; width: 100px" valign="middle"><label> <font color="black" face="Arial" size=3>Buscar: &nbsp; &nbsp; &nbsp; &nbsp; </font></label>
+
+                    </td>
+                    <td colspan="5"><br> <input type="text" name="txtBuscar" style=" width: 250px ; height: 30px ;color: black" id="txtBuscar" class="form-control" placeholder="Ingrese categoria a buscar"> </td>
+
+
+                </tr>
+
+
+                <tr class="table table-hover">
+                    <th height="30" width="100">&nbsp;</th>
+                    <th  height="30" colspan="2" width="100" > <font color="black" face="Arial" size=2> Id </font></th>
+                    <th height="30" colspan="2" width="100"><font color="black" face="Arial" size=2> Nombre </font></th>
+                    <th height="30" colspan="3" width="100"><font color="black" face="Arial" size=2> Detalle </font></th>
+                    <th height="30" width="100"><font color="black" face="Arial" size=2> Editar </font></th>
+
+                </tr>
+
+                {% for item in categoria %}
+                    <tbody class="table table-hover">
+                    <tr id="tr{{ item.id }}">
+                        <td  height="40"></td>
+
+                        <td  height="40" colspan="2">{{ item.cat_id}}</td>
+                        <td  height="40" colspan="2">{{ item.cat_nombre }}</td>
+                        <td  height="40" colspan="3">{{ item.cat_detalle }}</td>
+                        <td  height="30">
+                            <button style="height: 30px; width: 37px" aria-label="Left Align" class="btn btn-default" type="button" onclick="window.location.href='{% url 'modificarcategoria' item.cat_id %}'" >
+                            <span class="glyphicon glyphicon-file" aria-hidden="true" > </span>
+                            </button>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                {% endfor %}
+
+
+                <tr>
+
+                </tr>
+
+
+                <tr>
+                    <td colspan="9" class="titulos" height="10"><hr /></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+
+                    <td colspan="3" align="right" > <button type="submit" style="font-size: 15px; width: 190px"   class="btn btn-default" aria-label="Left Align"  >
+                        <span class="glyphicon glyphicon-search" aria-hidden="true" > </span>  <b> BUSCAR  </b>
+                    </button> &nbsp; &nbsp; &nbsp; </td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+
+
+                </tr>
+            </table>
+        </div>
+
+
+
+
+
+    </form>
+
+{% endblock content %}

@@ -1,0 +1,316 @@
+
+{% extends "menu.html" %}
+{% load staticfiles %}
+{% block content %}
+
+    <form  method="post" id="formulario">
+
+        {% csrf_token %}
+
+        <table width="1000" border="0" cellspacing="0" cellpadding="0" align="center">
+            <tr>
+                <td width="56" class="titulos"></td>
+                <td height="5" colspan="2" class="titulos"></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td width="100">&nbsp;</td>
+                <td width="20">&nbsp;</td>
+                <td width="80">&nbsp;</td>
+                <td width="100">&nbsp;</td>
+                <td width="50">&nbsp;</td>
+                <td width="50">&nbsp;</td>
+                <td width="100">&nbsp;</td>
+                <td width="100">&nbsp;</td>
+
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td colspan="8" align="center" > <font color="black" face="Arial" size=4> <b> INGRESAR ORDEN DE TRABAJO  &nbsp;  &nbsp;  &nbsp;  &nbsp; </b></font>  </td>
+
+
+            </tr>
+            <tr>
+                <td colspan="9" class="titulos" height="10"><hr /></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+
+                <td>&nbsp;</td>
+                <td style="height: 30px ;"><label> <font color="black" face="Arial" size=3>Nombre: </font></label>  </td>
+                <td colspan="2">
+
+                    <br><input type="text" name="txtNombre" style=" width: 320px ; height: 30px ;color: black" id="txtNombre" class="form-control" onclick="cliente()" placeholder="Ingrese nombre cliente">
+                    <input type="hidden" name="idcliente" style=" width: 320px ; height: 30px ;color: black" id="idcliente"> </td>
+
+                <td><button name="btnuser" id="btnuser" type="button" style="font-size: 15px; width: 40px; height: 30px" onclick=" window.location.href='{% url 'nuevocli' %}' ">
+                    <span class="glyphicon glyphicon-user" aria-hidden="true" > </span>
+                </button>  </td>
+                <td   style="height: 30px" valign="middle"><label> <font color="black" face="Arial" size=3>Numero: </font></label>  </td>
+
+
+
+                <td><br><input disabled type="text" name="txtNumero" style=" width: 70px ; height: 30px ;color: black" id="txtNumero" class="form-control" placeholder="No." >
+                <input  type="hidden" name="Numero" style=" width: 70px ; height: 30px ;color: black" id="Numero" value=""  ></td>
+                <td>&nbsp;</td>
+
+                <script !src="">
+
+
+                  var num = parseInt({{ ord }})+1
+                    document.getElementById("txtNumero").value = num
+                    document.getElementById("Numero").value = num
+
+
+                </script>
+
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+                <td><label> <font color="black" face="Arial" size=3>Fecha R: &nbsp; &nbsp; &nbsp; &nbsp;</font></label>  </td>
+                <td colspan="2" > <input class="form-control" style="width: 150px;height: 30px" type="date" id="fechaR"  name="fechaR" placeholder="Ingrese fecha de recepcion"/> </td>
+                <td></td>
+                <td ><label> <font color="black" face="Arial" size=3>Fecha E: &nbsp; &nbsp; &nbsp; &nbsp;</font></label> </td>
+                <td colspan="2">  <input class="form-control" style="width: 150px;height: 30px" type="date" id="fechaE"  name="fechaE" placeholder="Ingrese fecha de entrega"/> </td> </td>
+
+
+            </tr>
+
+
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+                <td style="height: 30px" valign="middle"><label> <font color="black" face="Arial" size=3>Tipo: </font></label>  </td>
+                <td colspan="2" > <select  class="form-control" style="width: 150px ; height: 30px; vertical-align: middle" name="cmbTipo" id="cmbTipo" SIZE=1 >
+                    <option value="Hardware">Hardware</option>
+                    <option value="Software">Software</option>
+                    <option value="Software">Completa</option>
+                </select>  </td>
+                <td>&nbsp;</td>
+                <td style="height: 30px" valign="middle"> </td>
+                <td> </td>
+                <td>&nbsp;</td>
+
+
+            </tr>
+
+            <tr>
+
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td colspan="2"> <br> <label> <font color="black" face="Arial" size=3>Detalle Equipo: </font></label>  </td>
+                <td>  </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+
+            </tr>
+
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td align="center" colspan="6">  <textarea name="txtDetalle" style="width: 660px ; height: 60px ;color: black" id="txtDetalle" class="form-control" placeholder="Ingrese detalle de la orden de trabajo"></textarea></td>
+                <td > </td>
+
+            </tr>
+
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td colspan="2"> <label> <font color="black" face="Arial" size=3>Detalle Servicio: </font></label>  </td>
+                <td>  </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+
+            </tr>
+
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td align="center" colspan="6">  <textarea name="txtSer" style="width: 660px ; height: 60px ;color: black" id="txtSer" class="form-control" placeholder="Ingrese detalle de la orden de trabajo"></textarea></td>
+                <td > </td>
+
+
+
+            </tr>
+
+
+
+            <tr>
+                <td colspan="9" class="titulos" height="10"><hr /></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+                <td colspan="1"> <button type="submit" style="font-size: 15px; width: 190px"   class="btn btn-default" aria-label="Left Align"  >
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" > </span>  <b> GUARDAR  </b>
+                </button>  </td>
+                <td>&nbsp;</td>
+                <td colspan="3"> <button type="button" style="font-size: 15px; width: 190px"   class="btn btn-default" aria-label="Left Align" onclick=" window.open('{% url 'imprimirordeninicial' ord %}','_blank') "  >
+                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true" > </span>  <b> IMPRIMIR  </b>
+                </button> &nbsp;  </td>
+                <td>&nbsp;</td>
+
+
+
+            </tr>
+        </table>
+    </form>
+
+    <div id="dialog" class="modal-content" >
+        <div id="resultado" >
+        </div>
+    </div>
+
+
+
+
+    <script>
+
+
+
+        function cliente(){
+
+
+            $( "#dialog" ).dialog({
+
+                class: "modal-content",
+                width: 1000,
+                height: 450,
+                resizable: false,
+                position: { my: 'center', at: 'middle', of: window },
+
+
+
+            });
+
+
+            $.ajax({
+                url: "{% url 'ordencliente' %}",
+                data: $('#formulario').serialize(),
+                success: function(data){
+                    $("#resultado").html(data);
+                }
+            });
+
+            $( "#dialog" ).dialog({
+                dialogClass: "no-close",
+                modal: true,
+                closeOnEscape: false,
+
+                buttons: [
+                    {
+                        class: "btn btn-default",
+                        position: "right",
+                        onclick: "valida()",
+                        text: "Aceptar",
+                        click: function() {
+                            var val = $('input:radio[name=group1]:checked').val()
+                            var ced = $('input:radio[name=group1]:checked').attr("id");
+
+                            alert(ced);
+
+                            document.getElementById("txtNombre").value = val;
+                            document.getElementById("idcliente").value = ced;
+
+                            $("#dialog").dialog("close");
+
+                        }
+
+                    },
+
+                    {
+                        class: "btn btn-default",
+                        position: "right",
+                        text: "Cancelar",
+                        click: function() {
+                            $( this ).dialog( "close" );
+                        }
+
+                    }
+                ]
+
+            });
+
+        }
+
+        function nuevocli() {
+
+            $( "#dialog" ).dialog({
+
+                class: "modal-content",
+                width: 1000,
+                height: 450,
+                resizable: false,
+                position: { my: 'center', at: 'middle', of: window },
+
+
+
+            });
+
+
+            $.ajax({
+                url: "{% url 'nuevocli' %}",
+                data: $('#formulario').serialize(),
+                success: function(data){
+                    $("#resultado").html(data);
+                }
+            });
+            $( "#dialog" ).dialog({
+                dialogClass: "no-close",
+                modal: true,
+                closeOnEscape: false,
+
+                buttons: [
+                    {
+                        class: "btn btn-default",
+                        position: "right",
+                        onclick: "valida()",
+                        text: "Aceptar",
+                        click: function() {
+                            var val = $('input:radio[name=group1]:checked').val()
+                            var ced = $('input:radio[name=group1]:checked').attr("id");
+
+                            alert(ced);
+
+                            document.getElementById("txtNombre").value = val;
+                            document.getElementById("idcliente").value = ced;
+
+                            $("#dialog").dialog("close");
+
+                        }
+
+                    },
+
+                    {
+                        class: "btn btn-default",
+                        position: "right",
+                        text: "Cancelar",
+                        click: function() {
+                            $( this ).dialog( "close" );
+                        }
+
+                    }
+                ]
+
+            });
+
+
+        }
+
+
+    </script>
+{% endblock %}

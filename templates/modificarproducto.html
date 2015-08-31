@@ -1,0 +1,197 @@
+
+{% extends "menu.html" %}
+{% load staticfiles %}
+
+{% block content %}
+
+    <div id="libo_estrucobj">
+        <div id="resultado">
+        </div>
+    </div>
+
+    <form  method="post" id="formulario">
+
+        {% csrf_token %}
+
+        <table width="1000" border="0" cellspacing="0" cellpadding="0" align="center">
+            <tr>
+                <td width="56" class="titulos"></td>
+                <td height="5" colspan="2" class="titulos"></td>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td width="100">&nbsp;</td>
+                <td width="20">&nbsp;</td>
+                <td width="80">&nbsp;</td>
+                <td width="100">&nbsp;</td>
+                <td width="50">&nbsp;</td>
+                <td width="100">&nbsp;</td>
+                <td width="100">&nbsp;</td>
+                <td width="100">&nbsp;</td>
+
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td colspan="7" align="center" > <font color="black" face="Arial" size=4> <b> MODIFICAR: </b> {{ pro.pro_nombre }} {{ pro.pro_modelo }} {{ pro.pro_marca }}</font>  </td>
+                <td>&nbsp;</td>
+
+            </tr>
+            <tr>
+                <td colspan="9" class="titulos" height="10"><hr /></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+
+                <td>&nbsp;</td>
+                <td style="height: 30px ; vertical-align: middle"> <label> <font color="black" face="Arial" size=3>Categoria: </font></label>  </td>
+                <td style="height: 30px ; vertical-align: middle" >
+                    <select  class="form-control" style="width: 190px ; height: 31px; vertical-align: middle" name="cmbCat" id="cmbCat" SIZE=1 >
+                        {% for item in cate %}
+                            <option value="{{ item.cat_id }}">{{ item.cat_nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td> <button id="btnCat" name="btnCat" type="button" style="font-size: 15px; height: 31px"   class="btn btn-default" aria-label="Left Align"  >
+                    <span class="glyphicon glyphicon-list-alt" aria-hidden="true" > </span>
+                </button></td>
+                <td style="height: 30px" valign="middle"><label> <font color="black" face="Arial" size=3>Stock: </font></label>  </td>
+                <td><br><input type="text" name="txtStockA" style=" width: 190px ; height: 30px ;color: black" id="txtStockA" class="form-control" placeholder="Ingrese stock" value="{{ pro.pro_stocka }}"> </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+            </tr>
+
+
+
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+                <td style="height: 30px" valign="middle"><label> <font color="black" face="Arial" size=3>Proveedor: </font></label>  </td>
+                <td style="height: 30px ; vertical-align: middle" >
+                    <select  class="form-control" style="width: 190px ; height: 31px; vertical-align: middle" name="cmbProv" id="cmbProv" SIZE=1 >
+                        {% for item in prove %}
+                            <option value="{{ item.prov_cedula }}">{{ item.prov_nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </td>
+                <td><button id="btnProv" name="btnProv" type="button" style="font-size: 15px; height: 31px"   class="btn btn-default" aria-label="Left Align"  >
+                    <span class="glyphicon glyphicon-user" aria-hidden="true" > </span>
+                </button></td>
+                <td style="height: 30px" valign="middle"><label> <font color="black" face="Arial" size=3>Stock Minimo: </font></label>  </td>
+                <td><br><input type="text" name="txtStockM" style=" width: 190px ; height: 30px ;color: black" id="txtStockM" class="form-control" placeholder="Ingrese stock minimo" value="{{ pro.pro_stockm }}"> </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+
+        </tr>
+        <script >
+
+                    var est = "{{ cat.cat_id }}"
+
+                    document.getElementById("cmbCat").value = est
+
+                    var tipo = "{{ prov.prov_cedula }}"
+
+                    document.getElementById("cmbProv").value = tipo
+
+            </script>
+
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+                <td style="height: 30px" valign="middle"><label> <font color="black" face="Arial" size=3>Nombre: </font></label>  </td>
+                <td> <br> <input type="text" name="txtNombre" style="width: 190px ; height: 30px ;color: black" id="txtNombre" class="form-control" placeholder="Ingrese producto" value="{{ pro.pro_nombre }}"> </td>
+                <td>&nbsp;</td>
+                <td style="height: 30px" valign="middle"><label> <font color="black" face="Arial" size=3>Precio Proveedor: </font></label>  </td>
+                <td><br><input type="text" name="txtPrecioP" style=" width: 190px ; height: 30px ;color: black" id="txtPrecioP" class="form-control" placeholder="Ingrese precio proveedor" value="{{ pro.pro_precio }}"> </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+                <td style="height: 30px" valign="middle"><label> <font color="black" face="Arial" size=3>Modelo: </font></label>  </td>
+                <td> <br> <input type="text" name="txtModelo" style="width: 190px ; height: 30px ;color: black" id="txtModelo" class="form-control" placeholder="Ingrese modelo" value="{{ pro.pro_modelo }}"> </td>
+                <td>&nbsp;</td>
+                <td style="height: 30px" valign="middle"><label> <font color="black" face="Arial" size=3>Precio Venta: </font></label>  </td>
+                <td><br><input type="text" name="txtPrecio" style=" width: 190px ; height: 30px ;color: black" id="txtPrecio" class="form-control" placeholder="Ingrese precio venta" value="{{ pro.pro_preciov }}"> </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+            </tr>
+            <tr>
+
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td style="height: 30px" valign="middle"><label> <font color="black" face="Arial" size=3>Marca: </font></label>  </td>
+                <td> <br> <input type="text" name="txtMarca" style="width: 190px ; height: 30px ;color: black" id="txtMarca" class="form-control" placeholder="Ingrese marca" value="{{ pro.pro_marca }}"> </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+
+
+
+            <tr>
+                <td colspan="9" class="titulos" height="10"><hr /></td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+                <td colspan="3" align="right" > <button type="submit" style="font-size: 15px; width: 190px"   class="btn btn-default" aria-label="Left Align" onclick="validarFormulario()">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" > </span>  <b> GUARDAR  </b>
+                </button> &nbsp; &nbsp; &nbsp; </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+
+
+            </tr>
+        </table>
+    </form>
+
+    <script>
+        function validarFormulario(){
+            document.getElementById("formulario").onsubmit=function(){
+
+
+
+
+
+                var v1 = document.getElementById("txtNombre").value;
+                var v2 = document.getElementById("txtModelo").value;
+                var v3 = document.getElementById("txtMarca").value;
+                var v4 = document.getElementById("txtStockA").value;
+                var v5 = document.getElementById("txtStockM").value;
+                var v6 = document.getElementById("txtPrecioP").value;
+                var v7 = document.getElementById("txtPrecioP").value;
+
+                if( v1 == null || v1.length == 0 || /^\s+$/.test(v1) || v2 == null || v2.length == 0 || /^\s+$/.test(v2) || v3 == null || v3.length == 0 || /^\s+$/.test(v3) || v4 == null || v4.length == 0 || /^\s+$/.test(v4)  || v5 == null || v5.length == 0 || /^\s+$/.test(v5) || v6 == null || v6.length == 0 || /^\s+$/.test(v6) || v7 == null || v7.length == 0 || /^\s+$/.test(v7)) {
+                    alert("Todos los campos son obligatorios");
+                    return false;
+
+
+
+
+
+                }
+            }
+            function borrarFormulario(){
+                document.getElementById("formulario").onsubmit=function(){
+                    return true;
+                }
+            }}
+    </script>
+
+{% endblock content %}

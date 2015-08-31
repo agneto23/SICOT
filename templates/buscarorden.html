@@ -1,0 +1,148 @@
+
+{% extends "menu.html" %}
+{% load staticfiles %}
+{% block content %}
+
+
+
+    <form  method="post" id="formulario">
+
+        {% csrf_token %}
+
+        <div class="table-responsive" >
+
+            <table width="1000" border="0"  align="center">
+                <tr>
+                    <td width="56" class="titulos"></td>
+                    <td height="5" colspan="2" class="titulos"></td>
+                    <td colspan="3"></td>
+                </tr>
+                <tr>
+                    <td width="60">&nbsp;</td>
+                    <td width="60">&nbsp;</td>
+                    <td width="10">&nbsp;</td>
+                    <td width="40">&nbsp;</td>
+                    <td width="40">&nbsp;</td>
+                    <td width="80">&nbsp;</td>
+                    <td width="100">&nbsp;</td>
+                    <td width="100">&nbsp;</td>
+
+
+                </tr>
+                <tr>
+                    <td colspan="8" align="center" > <font color="black" face="Arial" size=4> <b> BUSCAR ORDEN DE TRABAJO </b></font>  </td>
+
+                </tr>
+                <tr>
+                    <td colspan="8" class="titulos" height="10"><hr /></td>
+                </tr>
+
+                <tr>
+                    <td>&nbsp;</td>
+
+ <td>&nbsp;</td>
+                    <td align="right" colspan="1" style="height: 30px; width: 100px" valign="middle"><label> <font color="black" face="Arial" size=3>Buscar:&nbsp;</font></label>
+
+                    </td>
+
+                    <td align="right" colspan="1"><br> <input type="text" name="txtBuscar" style=" width: 150px ; height: 30px ;color: black" id="txtBuscar" class="form-control" placeholder="Ingrese proveedor a buscar"> </td>
+
+                    <td> <select  class="form-control" style="width: 150px ; height: 30px; vertical-align: middle" onchange="buscar(this)" name="cmbTipo" id="cmbTipo" SIZE=1 >
+                    <option value=""></option>
+                        <option value="h">Habilitada</option>
+                    <option value="a">Anulada</option>
+                    <option value="f">Finalizada</option>
+                    </select> </td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+
+                </tr>
+
+
+                <tr class="table table-hover">
+                    <th height="30" width="100">&nbsp;</th>
+                    <th  height="30" width="100" > <font color="black" face="Arial" size=2> Cedula Cliente </font></th>
+                    <th height="30"  width="70"><font color="black" face="Arial" size=2 > Numero </font></th>
+                    <th height="30"  width="150"><font color="black" face="Arial" size=2> Fecha Recepcion </font></th>
+                    <th height="30"width="150"><font color="black" face="Arial" size=2> Fecha Entrega </font></th>
+                    <th height="30"  width="50"><font color="black" face="Arial" size=2> Tipo </font></th>
+                    <th height="30"  width="100"><font color="black" face="Arial" size=2> Estado </font></th>
+                    <th height="30"  width="100"><font color="black" face="Arial" size=2> Editar </font></th>
+                    <th height="30"  width="100"><font color="black" face="Arial" size=2> Imprimir </font></th>
+
+                </tr>
+
+                {% for item in ord %}
+                    <tbody class="table table-hover">
+                    <tr id="tr{{ item.id }}">
+                        <td  height="40"></td>
+
+                        <td  height="40" >{{ item.cli_cedula_id}}</td>
+                        <td  height="40" >{{ item.ord_numero }}</td>
+                        <td  height="40" >{{ item.ord_fechar }}</td>
+                        <td  height="40" >{{ item.ord_fechae }}</td>
+                        <td  height="40" >{{ item.ord_tipo }}</td>
+                        <td  height="40" >{{ item.ord_estado}}</td>
+
+                        <td  height="30">
+
+                            <button style="height: 30px; width: 37px" aria-label="Left Align" class="btn btn-default" type="button" onclick="window.location.href='{% url 'modificarorden' item.ord_id %}'" >
+                                <span class="glyphicon glyphicon-file" aria-hidden="true" > </span>
+                            </button>
+                        </td>
+
+                        <td  height="30">
+
+                            <button style="height: 30px; width: 37px" aria-label="Left Align" class="btn btn-default" type="button" onclick="  window.open('{% url 'imprimirorden' item.ord_id %}','_blank')  " >
+                                <span class="glyphicon glyphicon-file" aria-hidden="true" > </span>
+                            </button>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                {% endfor %}
+
+
+                <tr>
+
+                </tr>
+
+
+                <tr>
+                    <td colspan="8" class="titulos" height="10"><hr /></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+
+                    <td colspan="2" align="center" > <button type="submit" style="font-size: 15px; width: 190px"   class="btn btn-default" aria-label="Left Align"  >
+                        <span class="glyphicon glyphicon-search" aria-hidden="true" > </span>  <b> BUSCAR  </b>
+                    </button> </td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+                    <td>&nbsp;</td>
+
+
+
+                </tr>
+            </table>
+        </div>
+
+    </form>
+
+
+
+    <script >
+
+    function buscar(){
+
+    alert("ya");
+
+
+    $("#formulario").submit();
+
+    }
+
+    </script>
+{% endblock content %}

@@ -1,0 +1,164 @@
+<body onload="window.print()">
+
+<form  method="post"  id="formulario">
+
+    {% csrf_token %}
+
+    <table id="tabla" border="0" name="tabla" width="900" border="0" cellspacing="0" cellpadding="0" align="center">
+
+        <tr>
+
+            <td width="100"></td>
+            <td width="100"></td>
+            <td width="100">&nbsp;</td>
+            <td width="100">&nbsp;</td>
+            <td width="100">&nbsp;</td>
+            <td width="80">&nbsp;</td>
+            <td width="100">&nbsp;</td>
+            <td width="100">&nbsp;</td>
+
+        </tr>
+        <tr>
+
+            <td colspan="8" align="center" > <font color="black" face="Arial" size=4> <b> ATECOM COMPUTERS  &nbsp;  &nbsp;  &nbsp;  &nbsp; </b></font>  </td>
+
+
+        </tr>
+        <tr>
+            <td colspan="8" class="titulos" height="10"><hr /></td>
+        </tr>
+        <tr>
+
+
+            <td></td>
+            <td style="height: 30px ;"><label> <font color="black" face="Arial" size=3> <b>Nombre: </b> </font></label>  </td>
+            <td colspan="2">
+
+
+                <label> <font color="black" face="Arial" size=3> {{ cli.cli_nombre }} {{ cli.cli_apellido }} </font></label>
+                 </td>
+
+            <td> </td>
+            <td   style="height: 30px" valign="middle"><label> <font color="black" face="Arial" size=3><b>Numero: </b> </font></label>  </td>
+            <td>
+                <label> <font color="black" face="Arial" size=3> {{ ord.ord_numero }} </font></label>
+
+               </td>
+            <script !src="">
+
+            </script>
+
+        </tr>
+        <tr>
+
+            <td></td>
+
+            <td><label> <font color="black" face="Arial" size=3> <b> Fecha Recepcion: </b> </font></label>  </td>
+            <td colspan="2" >
+
+                 <label> <font color="black" face="Arial" size=3> {{ ord.ord_fechar|date:"Y-m-d" }} </font></label>
+              </td>
+            <td></td>
+            <td ><label> <font color="black" face="Arial" size=3> <b>Fecha E: </b> </font></label> </td>
+            <td colspan="2">
+
+                <label> <font color="black" face="Arial" size=3> {{ ord.ord_fechae|date:"Y-m-d" }} </font></label>
+                 </td>
+
+
+        </tr>
+
+
+        <tr>
+
+            <td></td>
+
+            <td style="height: 30px" valign="middle"><label> <font color="black" face="Arial" size=3><b>Tipo: </b></font></label>  </td>
+            <td colspan="2" >  <label> <font color="black" face="Arial" size=3> {{ ord.ord_tipo }} </font></label> </td>
+            <td>&nbsp;</td>
+            <td  valign="middle">  <label> <font color="black" face="Arial" size=3><b>Estado:</b></font></label> </td>
+            <td colspan="2" >  <label> <font color="black" face="Arial" size=3> {{ ord.ord_estado }} </font></label> </td>
+
+
+
+            <script>
+                var est = "{{ ord.ord_estado }}"
+
+                document.getElementById("cmbEst").value = est
+
+                var tipo = "{{ ord.ord_tipo }}"
+
+                document.getElementById("cmbTipo").value = tipo
+
+
+
+
+            </script>
+        </tr>
+
+        <tr>
+
+        </tr>
+        <tr>
+
+            <td></td>
+            <td colspan="2"> <br> <label> <font color="black" face="Arial" size=3><b>Detalle Equipo: </b></font></label>  </td>
+            <td>  </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+
+        </tr>
+
+        <tr>
+
+            <td></td>
+            <td align="center" colspan="6"> <br> <textarea name="txtDetalle"  style="width: 660px ; height: 60px ;color: black" id="txtDetalle" class="form-control" placeholder="Ingrese detalle de la orden de trabajo">{{ ord.ord_detalle}}</textarea></td>
+            <td > </td>
+
+        </tr>
+
+        <tr>
+
+            <td></td>
+            <td colspan="2"> <br><label> <font color="black" face="Arial" size=3><b>Detalle Servicio: </b></font></label>  </td>
+            <td>  </td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+
+
+        </tr>
+
+        <tr>
+
+            <td></td>
+            <td align="center" colspan="6"> <br> <textarea name="txtSer" style="width: 660px ; height: 60px ;color: black" id="txtSer" class="form-control" placeholder="Ingrese detalle de la orden de trabajo">{{ ord.ord_servicio }}</textarea><br></td>
+            <td > </td>
+
+
+
+        </tr>
+
+         <tr>
+            <td colspan="8" class="titulos" height="10"><b><hr /></b></td>
+        </tr>
+
+
+
+
+
+    </table>
+
+
+
+
+
+
+
+</form>
+
+</body>

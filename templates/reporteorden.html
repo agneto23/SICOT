@@ -1,0 +1,52 @@
+
+{% extends "menu.html" %}
+{% load staticfiles %}
+{% block content %}
+
+
+  <h4 align="center" ><font color="black" face="Arial" size=4> <b>REPORTE ORDEN DE TRABAJO </b></font>  </h4>
+
+    <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Numero</th>
+            <th>Fecha Recepcion</th>
+            <th>Fecha Entrega</th>
+            <th>Tipo</th>
+            <th>Precio</th>
+            <th>Estado</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in c %}
+            <tr class="active">
+                        <td  height="40" >{{ item.cli_cedula}}</td>
+                        <td  height="40" >{{ item.ord_numero }}</td>
+                        <td  height="40" >{{ item.ord_fechar }}</td>
+                        <td  height="40" >{{ item.ord_fechae }}</td>
+                        <td  height="40" >{{ item.ord_tipo }}</td>
+                        <td  height="40" >{{ item.ord_precio }}</td>
+                        <td  height="40" >{{ item.ord_estado }}</td>
+
+
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+    <table width="1350" border="0">
+     <tr  style="width: 1000px" class="active">
+     <td  align="center" class="active">
+    <a  href="{% url 'generar_pdforden' %}" target="_blank">
+       <button type="button" style="font-size: 16px; width: 180px; height: 35px"  class="btn btn-default" aria-label="Left Align" value="Imprimir" >
+        <span class="glyphicon glyphicon-file" aria-hidden="true" > </span> <b> IMPRIMIR </b>
+    </button>
+    </a>
+     </td>
+    </tr>
+    </table>
+
+
+{% endblock content %}

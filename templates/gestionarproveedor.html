@@ -1,0 +1,44 @@
+{% extends "menu.html" %}
+{% load staticfiles %}
+{% block content %}
+
+
+
+
+<table border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr height="40px">
+    <td>&nbsp;</td>
+  </tr>
+
+    <tr>
+
+                    <td align="center" > <font color="black" face="Arial" size=4> <b> GESTIONAR PROVEEDOR </b></font>  </td>
+
+
+                </tr>
+                <tr>
+                    <td  class="titulos" height="10"><hr /></td>
+                </tr>
+
+  <tr>
+    <td width="270"> <button type="button" style="font-size: 18px; width: 350px; height: 50px"  class="btn btn-default" aria-label="Left Align" onclick=" window.location.href='{% url 'ingresarproveedor' %}' " >
+        <span class="glyphicon glyphicon-user" aria-hidden="true" > </span>   INGRESAR PROVEEDOR
+    </button></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+
+  <tr>
+    <td><button type="button" style="font-size: 18px; width: 350px; height: 50px" class="btn btn-default" aria-label="Left Align" onclick=" window.location.href='{% url 'buscarproveedor' %}' " >
+        <span class="glyphicon glyphicon-search" aria-hidden="true" > </span>   BUSCAR PROVEEDOR
+    </button></td></td>
+  </tr>
+
+</table>
+
+
+
+
+
+{% endblock content %}

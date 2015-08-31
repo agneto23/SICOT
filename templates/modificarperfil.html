@@ -1,0 +1,32 @@
+
+{% extends "menu.html" %}
+{% load staticfiles %}
+{% block content %}
+
+    <br/>
+    <h4 align="center"><b> MODIFICAR PERFIL </b></h4>
+
+
+    <hr />
+
+    <form class="form-horizontal"  method="post" action="">{% csrf_token %}
+
+
+        <div class="container" align="center" >
+            {% load bootstrap3 %}
+
+            {% bootstrap_form form %}
+        </div>
+
+         <hr />
+        <div class="container">
+            <div class="form-group has-feedback" align="center">
+                <button type="submit" style="font-size: 15px; width: 190px"   class="btn btn-default"   >
+                    <span class="glyphicon glyphicon-search" aria-hidden="true" > </span>  <b> GUARDAR  </b>
+                </button>
+            </div>
+        </div>
+    </form>
+
+
+{% endblock content %}

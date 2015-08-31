@@ -1,0 +1,94 @@
+
+{% extends "menu.html" %}
+{% load staticfiles %}
+{% block content %}
+
+
+<form  method="post" id="formulario">
+
+
+<table width="1000" border="0" align="center">
+  <tr>
+    <td width="56" class="titulos"></td>
+    <td height="5" colspan="2" class="titulos"></td>
+    <td colspan="3"></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td width="80">&nbsp;</td>
+    <td width="20">&nbsp;</td>
+    <td width="20">&nbsp;</td>
+    <td width="80">&nbsp;</td>
+    <td width="80">&nbsp;</td>
+
+
+    </tr>
+  <tr>
+
+    <td colspan="6" align="center" > <font color="black" face="Arial" size=4> <b> PERFIL DE USUARIO </b></font>  </td>
+
+
+  </tr>
+    <tr>
+    <td colspan="6" class="titulos" height="10"><hr /></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+
+    <td>&nbsp;</td>
+    <td style="height: 30px ; vertical-align: middle" align="right"><label> <font color="black" face="Arial" size=3>Cedula: </font></label>  </td>
+    <td style="height: 30px ; vertical-align: middle" align="center">
+
+       <br><input type="text" name="txtNombre" style=" width: 190px ; height: 30px ;color: black" id="txtNombre" class="form-control" placeholder="Ingrese cedula" value="{{ usu.usu_cedula }}"></td>
+
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+      <td>&nbsp;</td>
+
+    <td style="height: 30px" align="right"><label> <font color="black" face="Arial" size=3>Nombre: </font></label>  </td>
+    <td align="center"><br><input type="text" name="txtNombre" style=" width: 190px ; height: 30px ;color: black" id="txtNombre" class="form-control" placeholder="Ingrese nombre" value="{{ usu.usu_nombre }}"> </td>
+    <td>&nbsp;</td>
+    <td style="height: 30px" valign="middle"> </td>
+
+
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+
+    <td style="height: 30px" align="right"><label> <font color="black" face="Arial" size=3>Apellido: </font></label>  </td>
+    <td align="center"> <br> <input type="text" name="txtNombre" style="width: 190px ; height: 30px ;color: black" id="txtNombre" class="form-control" placeholder="Ingrese representante" value="{{ usu.usu_apellido }}"> </td>
+
+<td>&nbsp;</td>
+      <td>&nbsp;</td>
+
+    </tr>
+    <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+
+    <td style="height: 30px" align="right"><label> <font color="black" face="Arial" size=3>Correo: </font></label>  </td>
+    <td align="center"><br><input type="text" name="txtNombre" style=" width: 190px ; height: 30px ;color: black" id="txtNombre" class="form-control" placeholder="Ingrese direccion" value="{{ usu.usu_correo }}"> </td>
+
+    <td>&nbsp;</td>
+
+
+    </tr>
+
+<tr>
+    <td colspan="6" class="titulos" height="10"><hr /></td>
+  </tr>
+    <tr>
+
+
+      <td colspan="6" align="center" > <button type="button" style="font-size: 15px; width: 190px"   class="btn btn-default" aria-label="Left Align" onclick=" window.location.href='{% url 'modificarperfil' usu.usu_cedula %}' " >
+           <span aria-hidden="true" > </span>  <b> EDITAR PERFIL  </b>
+      </button>  </td>
+
+
+
+    </tr>
+</table>
+</form>
+
+{% endblock content %}
